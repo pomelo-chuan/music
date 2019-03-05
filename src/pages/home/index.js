@@ -1,8 +1,16 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import Menu from '../menu';
+import './index.scss';
 
 class Home extends Component {
     render() {
-        return <div>Home</div>;
+        const {
+            children,
+        } = this.props;
+        return <div className='home-layout'>
+            <Menu />
+            {children}
+        </div>;
     }
 }
 

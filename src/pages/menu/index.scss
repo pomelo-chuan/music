@@ -1,0 +1,32 @@
+.menu {
+    width: 150px;
+    height: 100vw;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    ul {
+        margin-block-start: 0;
+        margin-block-end: 0;
+        padding-inline-start: 0;
+        li {
+            margin: 0 0 10px 0;
+            padding: 10px 5px;
+            a {
+                color: black;
+                font-size: 26px;
+                font-weight: 600;
+                text-decoration: none;
+            }
+            list-style: none;
+            transition: all 0.3s ease;
+        }
+        li:hover {
+            background-color: black;
+            a {
+                color: white;
+            }
+        }
+    }
+}

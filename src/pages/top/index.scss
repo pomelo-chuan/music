@@ -1,0 +1,47 @@
+.top-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.top-item {
+    width: 150px;
+    height: 150px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    background-size: 100% 100%;
+    margin: 0;
+    padding: 0;
+    transition: all ease 0.3s;
+    &:hover {
+        transform: scale(1.3);
+        transition: all ease 0.2s;
+        .top-desc {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+    }
+    overflow: hidden;
+}
+
+.top-desc {
+    width: 150px;
+    height: 150px;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    p {
+        font-size: 18px;
+        color: white;
+        margin-block-start: 0;
+        margin-block-end: 0;
+    }
+}
