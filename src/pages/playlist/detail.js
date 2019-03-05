@@ -12,6 +12,7 @@ class PlayListDetail extends Component {
                 tracks: [],
             },
         };
+        this.trackDetail = this.trackDetail.bind(this);
     }
     async componentDidMount() {
         try {
@@ -30,18 +31,27 @@ class PlayListDetail extends Component {
             console.error(error.message);
         }
     }
+    async trackDetail(data) {
+        console.log(data);
+    }
     render() {
         const {
             privileges,
             playlist,
         } = this.state;
-        return <div style={{width: '100%'}}>
-            <ul className='play-list-detail-ul'>
-                {playlist.tracks.map((item, index) => <li key={item.id}>
+        return <div style={{ width: '100%' }}>
+            <div className='play-list-detail-list'>
+                {playlist.tracks.map((item, index) => <button
+                    key={item.id}
+                    onClick={() => this.trackDetail(item)}
+                >
                     <p>{index + 1}</p>
-                    {item.name}
-                </li>)}
-            </ul>
+                    <p>{item.name}</p>
+                    <p>
+                        {item.ar.map(ar => ar.name).join(' / ')}
+                    </p>
+                </button>)}
+            </div>
         </div>;
     }
 }
