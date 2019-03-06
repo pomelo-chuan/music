@@ -11,6 +11,7 @@ class PlayListDetail extends Component {
             playlist: {
                 tracks: [],
             },
+            music: '',
         };
         this.trackDetail = this.trackDetail.bind(this);
     }
@@ -32,22 +33,34 @@ class PlayListDetail extends Component {
         }
     }
     async trackDetail(data) {
-        console.log(data);
+        try {
+            const response = await REQ(`/song/detail?ids=${data.id}`);
+            const song = await REQ(`/song/url?id=${response.songs[0]['id']}`);
+            console.log(song);
+            this.setState({
+                music: song.data[0]['url']
+            });
+        } catch (error) {
+            console.error(error.message);
+        }
     }
     render() {
         const {
-            privileges,
             playlist,
+            music,
         } = this.state;
         return <div style={{ width: '100%' }}>
+            <audio  src={music} />
             <div className='play-list-detail-list'>
                 {playlist.tracks.map((item, index) => <button
                     key={item.id}
                     onClick={() => this.trackDetail(item)}
                 >
-                    <p>{index + 1}</p>
-                    <p>{item.name}</p>
-                    <p>
+                    <p className='play-list-detail-list-name'>
+                        <span>{index + 1}</span>
+                        {item.name}
+                    </p>
+                    <p className='play-list-detail-list-singer'>
                         {item.ar.map(ar => ar.name).join(' / ')}
                     </p>
                 </button>)}

@@ -87,7 +87,7 @@ class PlayList extends Component {
                                     key={item.id}
                                     onClick={() => this.playListDetail(item)}
                                 >
-                                    <img src={item.coverImgUrl} />
+                                    <img alt='' src={item.coverImgUrl} />
                                     <div className='play-list-desc'>
                                         <p>{item.name}</p>
                                         <p>{item.creator.nickname}</p>

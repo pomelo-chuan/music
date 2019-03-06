@@ -5,7 +5,7 @@ import './index.scss';
 class Loading extends Component {
     render() {
         return <div className='loading'>
-            <img src={LOADING} />
+            <img alt='' src={LOADING} />
         </div>;
     }
 }
