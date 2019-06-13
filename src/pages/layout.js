@@ -11,7 +11,7 @@ class Layout extends Component {
         } = this.props;
         return <div className="layout">
             <div className="logo">
-                <img src={MUSIC} />
+                <img src={MUSIC} alt="logo" />
                 {/* <p>网易云音乐</p> */}
             </div>
             <div className='tab'>
