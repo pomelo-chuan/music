@@ -1,21 +1,22 @@
-import React from "react";
-import { BrowserRouter as Router, Route} from "react-router-dom";
-import Home from './pages/home';
-import Guide from './pages/guide';
-import Top from './pages/top';
-import TopDetail from './pages/top/detail';
-import PlayList from './pages/playlist';
-import PlayListDetail from './pages/playlist/detail';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import Recommend from './pages/recommend';
+import Hot from './pages/hot';
+import Search from './pages/search';
+import PlayListDetail from './pages/playListDetail';
 
-const Routes = () => (
-    <Router>
-        <Home>
-            <Route exact path="/" component={Guide} />
-            <Route path="/top" component={Top} />
-            <Route path="/topDetail/:id" component={TopDetail} />
-            <Route path="/playList" component={PlayList} />
-            <Route path="/playListDetail/:id" component={PlayListDetail} />
-        </Home>
-    </Router>
-);
-export default Routes;
+class TheRoutes extends Component {
+    render() {
+        return <Router>
+            <Route exact path="/" render={() => (
+                <Redirect to="/recommend" />
+            )} />
+            <Route path="/recommend" component={Recommend} />
+            <Route path="/hot" component={Hot} />
+            <Route path="/search" component={Search} />
+            <Route path="/playList" component={PlayListDetail} />
+        </Router>
+    }
+}
+
+export default TheRoutes;
