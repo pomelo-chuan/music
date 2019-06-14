@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from "react-router";
 import getQuery from '../utils/getQuery';
 import request from '../utils/request';
 import "../styles/playListDetail.scss";
@@ -49,7 +50,10 @@ class PlayListDetail extends Component {
     }
 
     play(data) {
-        console.log(data);
+        const {
+            id,
+        } = data;
+        this.props.history.push(`/player?id=${id}`)
     }
 
     render() {
@@ -103,4 +107,4 @@ class PlayListDetail extends Component {
     }
 }
 
-export default PlayListDetail;
+export default withRouter(PlayListDetail);

@@ -4,6 +4,7 @@ import Recommend from './pages/recommend';
 import Hot from './pages/hot';
 import Search from './pages/search';
 import PlayListDetail from './pages/playListDetail';
+import Player from './pages/player';
 
 class TheRoutes extends Component {
     render() {
@@ -15,6 +16,7 @@ class TheRoutes extends Component {
             <Route path="/hot" component={Hot} />
             <Route path="/search" component={Search} />
             <Route path="/playList" component={PlayListDetail} />
+            <Route path="/player" component={Player} />
         </Router>
     }
 }
