@@ -62,11 +62,11 @@ class PlayListDetail extends Component {
         }
         return <div className="play-list-detail-content">
             <div className="play-list-detail-banner">
-                <img src={playlist.coverImgUrl} alt={playlist.description} />
+                <img className="play-list-detail-banner-cover" src={playlist.coverImgUrl} alt={playlist.description} />
                 <div className="play-list-detail-banner-desc">
                     <p>{playlist.name}</p>
                     <div>
-                        <img src={playlist.creator.backgroundUrl} alt={playlist.creator.nickname} />
+                        <img className="play-list-detail-user-icon" src={playlist.creator.backgroundUrl} alt={playlist.creator.nickname} />
                         <p>{playlist.creator.nickname}</p>
                     </div>
                 </div>
