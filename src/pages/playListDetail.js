@@ -3,6 +3,7 @@ import getQuery from '../utils/getQuery';
 import request from '../utils/request';
 import "../styles/playListDetail.scss";
 import PLAY from '../images/play.svg';
+import Loading from '../component/loading';
 
 class PlayListDetail extends Component {
     constructor(props) {
@@ -57,7 +58,7 @@ class PlayListDetail extends Component {
             playlist,
         } = this.state;
         if (loading === true) {
-            return <div>loading</div>;
+            return <Loading />;
         }
         return <div className="play-list-detail-content">
             <div className="play-list-detail-banner">
