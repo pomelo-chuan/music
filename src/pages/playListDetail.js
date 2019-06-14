@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import getQuery from '../utils/getQuery';
 import request from '../utils/request';
+import "../styles/playListDetail.scss";
+import PLAY from '../images/play.svg';
 
 class PlayListDetail extends Component {
     constructor(props) {
@@ -10,8 +12,14 @@ class PlayListDetail extends Component {
             playlist: {
                 tags: [],
                 tracks: [
-                    { name: '' }
-                ]
+                    {
+                        name: '',
+                        ar: [],
+                        al: {},
+                    }
+                ],
+                creator: {
+                }
             },
             privileges: [],
         }
@@ -25,6 +33,7 @@ class PlayListDetail extends Component {
                 loading: true,
             });
             const response = await request(`/playlist/detail?id=${id}`);
+            console.log(response);
             const {
                 privileges,
                 playlist,
@@ -35,10 +44,13 @@ class PlayListDetail extends Component {
                 playlist: playlist,
             });
         } catch (error) {
-
         }
-
     }
+
+    play(data) {
+        console.log(data);
+    }
+
     render() {
         const {
             loading,
@@ -47,18 +59,44 @@ class PlayListDetail extends Component {
         if (loading === true) {
             return <div>loading</div>;
         }
-        return <div>
-            <div></div>
-            <div className="tag">
-                <span>标签: </span>
-                {playlist.tags.map((it, index) => <span key={index}>{it}</span>)}
+        return <div className="play-list-detail-content">
+            <div className="play-list-detail-banner">
+                <img src={playlist.coverImgUrl} alt={playlist.description} />
+                <div className="play-list-detail-banner-desc">
+                    <p>{playlist.name}</p>
+                    <div>
+                        <img src={playlist.creator.backgroundUrl} alt={playlist.creator.nickname} />
+                        <p>{playlist.creator.nickname}</p>
+                    </div>
+                </div>
             </div>
-            <div className="description">
-                {playlist.description}
-            </div>
-            <p>歌曲列表</p>
-            <div className="music-list">
-                {playlist.tracks.map((it, index) => <div key={index}>{it.name}</div>)}
+            {
+                playlist.tags.length > 0 &&
+                <div className="play-list-detail-tag">
+                    <span>标签</span>
+                    {playlist.tags.map((it, index) => <span key={index}>{it}</span>)}
+                </div>
+            }
+            {
+                playlist.description &&
+                <div className="play-list-detail-description">
+                    简介：{playlist.description}
+                </div>
+            }
+            <p className="play-list-item-title">歌曲列表</p>
+            <div className="play-list-detail-music-list">
+                {playlist.tracks.map((it, index) => <div className="music-list-detail" key={index}>
+                    <div className="left">{index + 1}</div>
+                    <div className="middle">
+                        <div>{it.name}</div>
+                        <div>{it.ar.map(it => it.name).join(' / ')} - {it.al.name}</div>
+                    </div>
+                    <div className="right">
+                        <button onClick={() => this.play(it)}>
+                            <img src={PLAY} alt="play" />
+                        </button>
+                    </div>
+                </div>)}
             </div>
         </div>;
     }
