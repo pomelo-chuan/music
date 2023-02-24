@@ -65,6 +65,8 @@ const SONG = (props) => {
   );
 };
 
+const URL = 'http://192.168.31.252:4000';
+
 const Index = () => {
   const { id } = useParams();
   const time = useTime((state) => state.time);
@@ -72,20 +74,20 @@ const Index = () => {
   const { isLoading, data } = useQuery(
     `song-${id}`,
     () =>
-      axios(`http://192.168.31.252:4000/song/detail?ids=${id}`).then(
+      axios(`${URL}/song/detail?ids=${id}`).then(
         (data) => data.data
       ),
     { cacheTime: Infinity }
   );
 
   const song = useQuery(`song-url-${id}`, () =>
-    axios(`http://192.168.31.252:4000/song/url?id=${id}`).then(
+    axios(`${URL}/song/url?id=${id}`).then(
       (data) => data.data.data
     )
   );
 
   const lyric = useQuery(`lyric-${id}`, () =>
-    axios(`http://192.168.31.252:4000/lyric?id=${id}`).then((data) => data.data)
+    axios(`${URL}/lyric?id=${id}`).then((data) => data.data)
   );
 
   const lyricParsed = useMemo(() => {
